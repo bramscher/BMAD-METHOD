@@ -8,13 +8,14 @@ npm-debug.log*
 
 # Build output
 dist/
-build/
+build/*.txt
 
 # System files
 .DS_Store
+Thumbs.db
 
 # Environment variables
 .env
 
-# VSCode settings
-.vscode/
+CLAUDE.md
+.ai/*

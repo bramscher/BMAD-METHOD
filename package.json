@@ -1,0 +1,39 @@
+{
+  "name": "bmad-method",
+  "version": "4.0.0",
+  "description": "Breakthrough Method of Agile AI-driven Development",
+  "main": "tools/cli.js",
+  "bin": {},
+  "scripts": {
+    "build": "node tools/cli.js build",
+    "build:agents": "node tools/cli.js build --agents-only",
+    "build:teams": "node tools/cli.js build --teams-only",
+    "list:agents": "node tools/cli.js list:agents",
+    "validate": "node tools/cli.js validate",
+    "analyze:deps": "echo 'Dependency analysis not yet implemented'"
+  },
+  "dependencies": {
+    "commander": "^9.4.1",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
+  },
+  "keywords": [
+    "agile",
+    "ai",
+    "development",
+    "methodology",
+    "agents",
+    "bmad"
+  ],
+  "author": "Brian (BMad) Madison",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/bmad-method.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
