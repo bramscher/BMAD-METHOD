@@ -18,23 +18,23 @@ This unified approach combines what would traditionally be separate backend and 
 
 1. Review the PRD and other documents for mentions of:
 
-   - Fullstack starter templates (e.g., T3 Stack, MEAN/MERN starters, Django + React templates)
-   - Monorepo templates (e.g., Nx, Turborepo starters)
-   - Platform-specific starters (e.g., Vercel templates, AWS Amplify starters)
-   - Existing projects being extended or cloned
+- Fullstack starter templates (e.g., T3 Stack, MEAN/MERN starters, Django + React templates)
+- Monorepo templates (e.g., Nx, Turborepo starters)
+- Platform-specific starters (e.g., Vercel templates, AWS Amplify starters)
+- Existing projects being extended or cloned
 
 2. If starter templates or existing projects are mentioned:
 
-   - Ask the user to provide access (links, repos, or files)
-   - Analyze to understand pre-configured choices and constraints
-   - Note any architectural decisions already made
-   - Identify what can be modified vs what must be retained
+- Ask the user to provide access (links, repos, or files)
+- Analyze to understand pre-configured choices and constraints
+- Note any architectural decisions already made
+- Identify what can be modified vs what must be retained
 
 3. If no starter is mentioned but this is greenfield:
 
-   - Suggest appropriate fullstack starters based on tech preferences
-   - Consider platform-specific options (Vercel, AWS, etc.)
-   - Let user decide whether to use one
+- Suggest appropriate fullstack starters based on tech preferences
+- Consider platform-specific options (Vercel, AWS, etc.)
+- Let user decide whether to use one
 
 4. Document the decision and any constraints it imposes
 
@@ -84,7 +84,7 @@ Document the choice and key services that will be used.]]
 
 ### Repository Structure
 
-[[LLM: Define the repository approach based on PRD requirements and platform choice:
+[[LLM: Define the repository approach based on PRD requirements and platform choice, explain your rationale or ask quetsions to the user if unsure:
 
 1. For modern fullstack apps, monorepo is often preferred
 2. Consider tooling (Nx, Turborepo, Lerna, npm workspaces)
@@ -286,17 +286,20 @@ Use appropriate format for the chosen API style. If no API (e.g., static site), 
 
 ^^CONDITION: has_rest_api^^
 
-```yaml
+```yml
 openapi: 3.0.0
 info:
-  title: { { api_title } }
-  version: { { api_version } }
-  description: { { api_description } }
-
+  title:
+    '[object Object]': null
+  version:
+    '[object Object]': null
+  description:
+    '[object Object]': null
 servers:
-  - url: { { api_base_url } }
-    description: { { environment } }
-# ... OpenAPI specification continues
+  - url:
+      '[object Object]': null
+    description:
+      '[object Object]': null
 ```
 
 ^^/CONDITION: has_rest_api^^
@@ -333,10 +336,12 @@ servers:
 2. Consider both frontend and backend components
 3. Define clear boundaries and interfaces between components
 4. For each component, specify:
-   - Primary responsibility
-   - Key interfaces/APIs exposed
-   - Dependencies on other components
-   - Technology specifics based on tech stack choices
+
+- Primary responsibility
+- Key interfaces/APIs exposed
+- Dependencies on other components
+- Technology specifics based on tech stack choices
+
 5. Create component diagrams where helpful
 6. After presenting all components, apply `tasks#advanced-elicitation` protocol]]
 
@@ -462,7 +467,7 @@ After presenting this section, apply `tasks#advanced-elicitation` protocol]]
 
 **Component Organization:**
 
-```
+```text
 {{component_structure}}
 ```
 
@@ -501,7 +506,7 @@ After presenting this section, apply `tasks#advanced-elicitation` protocol]]
 
 **Route Organization:**
 
-```
+```text
 {{route_structure}}
 ```
 
@@ -552,8 +557,10 @@ After presenting this section, apply `tasks#advanced-elicitation` protocol]]
 ^^CONDITION: serverless^^
 **Function Organization:**
 
-```
+```text
+
 {{function_structure}}
+
 ```
 
 **Function Template:**
@@ -571,7 +578,7 @@ After presenting this section, apply `tasks#advanced-elicitation` protocol]]
 ^^CONDITION: traditional_server^^
 **Controller/Route Organization:**
 
-```
+```text
 {{controller_structure}}
 ```
 
@@ -770,7 +777,7 @@ After presenting this section, apply `tasks#advanced-elicitation` protocol]]
 ### CI/CD Pipeline
 
 ```yaml
-{ { cicd_pipeline_config } }
+'[object Object]': null
 ```
 
 ### Environments
@@ -829,32 +836,41 @@ After presenting this section, apply `tasks#advanced-elicitation` protocol]]
 
 ### Testing Pyramid
 
-```
+```text
+
         E2E Tests
        /          \
     Integration Tests
-   /                  \
- Frontend Unit    Backend Unit
+
+/ \
+ Frontend Unit Backend Unit
+
 ```
 
 ### Test Organization
 
 **Frontend Tests:**
 
-```
+```text
+
 {{frontend_test_structure}}
+
 ```
 
 **Backend Tests:**
 
-```
+```text
+
 {{backend_test_structure}}
+
 ```
 
 **E2E Tests:**
 
-```
+```text
+
 {{e2e_test_structure}}
+
 ```
 
 ### Test Examples
@@ -998,35 +1014,3 @@ After presenting this section, apply `tasks#advanced-elicitation` protocol]]
 ## Checklist Results Report
 
 [[LLM: Before running the checklist, offer to output the full architecture document. Once user confirms, execute the `architect-checklist` and populate results here.]]
-
-## Next Steps
-
-[[LLM: Provide specific next steps for implementation.]]
-
-### Implementation Order
-
-1. **Environment Setup**
-
-   - Initialize monorepo structure
-   - Configure development environment
-   - Set up version control
-
-2. **Foundation (Epic 1)**
-
-   - Implement authentication flow
-   - Set up database schema
-   - Create basic API structure
-   - Implement core UI components
-
-3. **Feature Development**
-   - Follow story sequence from PRD
-   - Maintain type safety across stack
-   - Write tests as you go
-
-### Developer Handoff Prompts
-
-**For Scrum Master:**
-"Create stories for {{Project Name}} using the PRD at docs/prd.md and this fullstack architecture at docs/fullstack-architecture.md. Focus on Epic 1 implementation."
-
-**For Developer:**
-"Implement Story 1.1 from docs/stories/epic1/story-1.1.md using the fullstack architecture at docs/fullstack-architecture.md. Follow the coding standards and use the defined tech stack."

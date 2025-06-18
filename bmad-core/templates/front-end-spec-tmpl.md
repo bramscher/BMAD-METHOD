@@ -76,7 +76,7 @@ After presenting this section, apply `tasks#advanced-elicitation` protocol]]
 
 ```mermaid
 {{sitemap_diagram}}
-```
+```text
 
 @{example: sitemap}
 

@@ -7,7 +7,6 @@ logs
 npm-debug.log*
 
 # Build output
-dist/
 build/*.txt
 
 # System files
@@ -19,3 +18,5 @@ Thumbs.db
 
 CLAUDE.md
 .ai/*
+test-project-install/*
+sample-project/*

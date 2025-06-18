@@ -88,7 +88,7 @@
 
 [[LLM: Gather technical decisions that will guide the Architect. Steps:
 
-1. Check if `data#technical-preferences` file exists - use it to pre-populate choices
+1. Check if `data#technical-preferences` or an attached `technical-preferences` file exists - use it to pre-populate choices
 2. Ask user about: languages, frameworks, starter templates, libraries, APIs, deployment targets
 3. For unknowns, offer guidance based on project goals and MVP scope
 4. Document ALL technical choices with rationale (why this choice fits the project)
@@ -116,7 +116,7 @@
 CRITICAL: Epics MUST be logically sequential following agile best practices:
 
 - Each epic should deliver a significant, end-to-end, fully deployable increment of testable functionality
-- Epic 1 must establish foundational project infrastructure (app setup, Git, CI/CD, core services) unless we are adding new functionality to an existing app, while also delivering an initial piece of functionality, even as simple as a health-check route or display of a simple canary page
+- Epic 1 must establish foundational project infrastructure (app setup, Git, CI/CD, core services) unless we are adding new functionality to an existing app, while also delivering an initial piece of functionality, even as simple as a health-check route or display of a simple canary page - remember this when we produce the stories for the first epic!
 - Each subsequent epic builds upon previous epics' functionality delivering major blocks of functionality that provide tangible value to users or business when deployed
 - Not every project needs multiple epics, an epic needs to deliver value. For example, an API completed can deliver value even if a UI is not complete and planned for a separate epic.
 - Err on the side of less epics, but let the user know your rationale and offer options for splitting them if it seems some are too large or focused on disparate things.
@@ -148,7 +148,7 @@ CRITICAL: Epics MUST be logically sequential following agile best practices:
 [[LLM: CRITICAL STORY SEQUENCING REQUIREMENTS:
 
 - Stories within each epic MUST be logically sequential
-- Each story should be a "vertical slice" delivering complete functionality
+- Each story should be a "vertical slice" delivering complete functionality aside from early enabler stories for project foundation
 - No story should depend on work from a later story or epic
 - Identify and note any direct prerequisite stories
 - Focus on "what" and "why" not "how" (leave technical implementation to Architect) yet be precise enough to support a logical sequential order of operations from story to story.
