@@ -1,3 +1,36 @@
+# [4.11.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.10.3...v4.11.0) (2025-06-21)
+
+
+### Bug Fixes
+
+* resolve web bundles directory path when using relative paths in NPX installer ([5c8485d](https://github.com/bmadcode/BMAD-METHOD/commit/5c8485d09ffec60ad4965ced62f4595890cb7535))
+
+
+### Features
+
+* add markdown-tree integration for document sharding ([540578b](https://github.com/bmadcode/BMAD-METHOD/commit/540578b39d1815e41e11f0e87545de3f09ee54e1))
+
+## [4.10.3](https://github.com/bmadcode/BMAD-METHOD/compare/v4.10.2...v4.10.3) (2025-06-20)
+
+
+### Bug Fixes
+
+* bundle update ([2cf3ba1](https://github.com/bmadcode/BMAD-METHOD/commit/2cf3ba1ab8dd7e52584bef16a96e65e7d2513c4f))
+
+## [4.10.2](https://github.com/bmadcode/BMAD-METHOD/compare/v4.10.1...v4.10.2) (2025-06-20)
+
+
+### Bug Fixes
+
+* file formatting ([c78a35f](https://github.com/bmadcode/BMAD-METHOD/commit/c78a35f547459b07a15d94c827ec05921cd21571))
+
+## [4.10.1](https://github.com/bmadcode/BMAD-METHOD/compare/v4.10.0...v4.10.1) (2025-06-20)
+
+
+### Bug Fixes
+
+* SM sometimes would skip the rest of the epic stories, fixed ([1148b32](https://github.com/bmadcode/BMAD-METHOD/commit/1148b32fa97586d2f86d07a70ffbf9bb8c327261))
+
 # [4.10.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.9.2...v4.10.0) (2025-06-19)
 
 
