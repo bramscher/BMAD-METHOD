@@ -6,6 +6,7 @@ class DependencyResolver {
   constructor(rootDir) {
     this.rootDir = rootDir;
     this.bmadCore = path.join(rootDir, 'bmad-core');
+    this.common = path.join(rootDir, 'common');
     this.cache = new Map();
   }
 
@@ -14,7 +15,7 @@ class DependencyResolver {
     const agentContent = await fs.readFile(agentPath, 'utf8');
     
     // Extract YAML from markdown content
-    const yamlMatch = agentContent.match(/```ya?ml\n([\s\S]*?)\n```/);
+    const yamlMatch = agentContent.replace(/\r/g, "").match(/```ya?ml\n([\s\S]*?)\n```/);
     if (!yamlMatch) {
       throw new Error(`No YAML configuration found in agent ${agentId}`);
     }
@@ -123,6 +124,7 @@ class DependencyResolver {
       let content = null;
       let filePath = null;
 
+      // First try bmad-core
       for (const ext of extensions) {
         try {
           filePath = path.join(this.bmadCore, type, `${id}${ext}`);
@@ -130,6 +132,19 @@ class DependencyResolver {
           break;
         } catch (e) {
           // Try next extension
+        }
+      }
+      
+      // If not found in bmad-core, try common folder
+      if (!content) {
+        for (const ext of extensions) {
+          try {
+            filePath = path.join(this.common, type, `${id}${ext}`);
+            content = await fs.readFile(filePath, 'utf8');
+            break;
+          } catch (e) {
+            // Try next extension
+          }
         }
       }
 

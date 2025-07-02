@@ -1,3 +1,133 @@
+# [4.23.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.22.1...v4.23.0) (2025-07-01)
+
+
+### Features
+
+* VS Code Copilot integration ([#284](https://github.com/bmadcode/BMAD-METHOD/issues/284)) ([1a4ca4f](https://github.com/bmadcode/BMAD-METHOD/commit/1a4ca4ffa630c2d4156bdd7a040d4c2274801757))
+
+## [4.22.1](https://github.com/bmadcode/BMAD-METHOD/compare/v4.22.0...v4.22.1) (2025-06-30)
+
+
+### Bug Fixes
+
+* update expansion versions ([6905fe7](https://github.com/bmadcode/BMAD-METHOD/commit/6905fe72f6c2abefbfd65729d1be85752130a1d2))
+
+# [4.22.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.21.2...v4.22.0) (2025-06-30)
+
+
+### Features
+
+* create doc more explicit and readme improvement ([a1b30d9](https://github.com/bmadcode/BMAD-METHOD/commit/a1b30d9341d2ceff79db2c7e178860c5ef0d99e5))
+
+## [4.21.2](https://github.com/bmadcode/BMAD-METHOD/compare/v4.21.1...v4.21.2) (2025-06-30)
+
+
+### Bug Fixes
+
+* improve create-doc task clarity for template execution ([86d5139](https://github.com/bmadcode/BMAD-METHOD/commit/86d5139aea7097cc5d4ee9da0f7d3e395ce0835e))
+
+## [4.21.1](https://github.com/bmadcode/BMAD-METHOD/compare/v4.21.0...v4.21.1) (2025-06-30)
+
+
+### Bug Fixes
+
+* readme clarifies that the installer handles installs upgrades and expansion installation ([9371a57](https://github.com/bmadcode/BMAD-METHOD/commit/9371a5784f6a6f2ad358a72ea0cde9c980357167))
+
+# [4.21.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.20.0...v4.21.0) (2025-06-30)
+
+
+### Bug Fixes
+
+* remove unneeded files ([c48f200](https://github.com/bmadcode/BMAD-METHOD/commit/c48f200727384f37a42f4c6b1a946cb90f2445fe))
+
+
+### Features
+
+* massive installer improvement update ([c151bda](https://github.com/bmadcode/BMAD-METHOD/commit/c151bda93833aa310ccc7c0eabcf483376f9e82a))
+
+# [4.20.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.19.2...v4.20.0) (2025-06-29)
+
+
+### Features
+
+* Massive documentation refactor, added explanation of the new expanded role of the QA agent that will make your code quality MUCH better. 2 new diagram clearly explain the role of the pre dev ideation cycle (prd and architecture) and the details of how the dev cycle works. ([c881dcc](https://github.com/bmadcode/BMAD-METHOD/commit/c881dcc48ff827ddfe8653aa364a021a66ce66eb))
+
+## [4.19.2](https://github.com/bmadcode/BMAD-METHOD/compare/v4.19.1...v4.19.2) (2025-06-28)
+
+
+### Bug Fixes
+
+* docs update and correction ([2408068](https://github.com/bmadcode/BMAD-METHOD/commit/240806888448bb3a42acfd2f209976d489157e21))
+
+## [4.19.1](https://github.com/bmadcode/BMAD-METHOD/compare/v4.19.0...v4.19.1) (2025-06-28)
+
+
+### Bug Fixes
+
+* discord link ([2ea806b](https://github.com/bmadcode/BMAD-METHOD/commit/2ea806b3af58ad37fcb695146883a9cd3003363d))
+
+# [4.19.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.18.0...v4.19.0) (2025-06-28)
+
+
+### Bug Fixes
+
+* expansion install config ([50d17ed](https://github.com/bmadcode/BMAD-METHOD/commit/50d17ed65d40f6688f3b6e62732fb2280b6b116e))
+
+
+### Features
+
+* install for ide now sets up rules also for expansion agents! ([b82978f](https://github.com/bmadcode/BMAD-METHOD/commit/b82978fd38ea789a799ccc1373cfb61a2001c1e0))
+
+# [4.18.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.17.0...v4.18.0) (2025-06-28)
+
+
+### Features
+
+* expansion teams can now include core agents and include their assets automatically ([c70f1a0](https://github.com/bmadcode/BMAD-METHOD/commit/c70f1a056b0f6e3c805096ee5d27f0a3640fb00c))
+* remove hardcoding from installer for agents, improve expansion pack installation to its own locations, common files moved to common folder ([95e833b](https://github.com/bmadcode/BMAD-METHOD/commit/95e833beebc3a60f73a7a1c67d534c8eb6bf48fd))
+
+# [4.17.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.16.1...v4.17.0) (2025-06-27)
+
+
+### Features
+
+* add GEMINI.md to agent context files ([#272](https://github.com/bmadcode/BMAD-METHOD/issues/272)) ([b557570](https://github.com/bmadcode/BMAD-METHOD/commit/b557570081149352e4efbef8046935650f6ecea1))
+
+## [4.16.1](https://github.com/bmadcode/BMAD-METHOD/compare/v4.16.0...v4.16.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* remove accidental folder add ([b1c2de1](https://github.com/bmadcode/BMAD-METHOD/commit/b1c2de1fb58029f68e021faa90cd5d5faf345198))
+
+# [4.16.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.15.0...v4.16.0) (2025-06-26)
+
+
+### Features
+
+* repo builds all rules sets for supported ides for easy copy if desired ([ea945bb](https://github.com/bmadcode/BMAD-METHOD/commit/ea945bb43f6ea50594910b954c72e79f96a8504c))
+
+# [4.15.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.14.1...v4.15.0) (2025-06-26)
+
+
+### Features
+
+* Add Gemini CLI Integration ([#271](https://github.com/bmadcode/BMAD-METHOD/issues/271)) ([44b9d7b](https://github.com/bmadcode/BMAD-METHOD/commit/44b9d7bcb5cbb6de5a15d8f2ec7918d186ac9576))
+
+## [4.14.1](https://github.com/bmadcode/BMAD-METHOD/compare/v4.14.0...v4.14.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* add updated web builds ([6dabbcb](https://github.com/bmadcode/BMAD-METHOD/commit/6dabbcb670ef22708db6c01dac82069547ca79d6))
+
+# [4.14.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.13.0...v4.14.0) (2025-06-25)
+
+
+### Features
+
+* enhance QA agent as senior developer with code review capabilities and major brownfield improvements ([3af3d33](https://github.com/bmadcode/BMAD-METHOD/commit/3af3d33d4a40586479a382620687fa99a9f6a5f7))
+
 # [4.13.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.12.0...v4.13.0) (2025-06-24)
 
 

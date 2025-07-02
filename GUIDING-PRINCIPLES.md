@@ -1,6 +1,6 @@
-# BMAD Method Guiding Principles
+# BMad Method Guiding Principles
 
-The BMAD Method is a natural language framework for AI-assisted software development. These principles ensure contributions maintain the method's effectiveness.
+The BMad Method is a natural language framework for AI-assisted software development. These principles ensure contributions maintain the method's effectiveness.
 
 ## Core Principles
 
@@ -76,39 +76,6 @@ See [Expansion Packs Guide](../docs/expansion-packs.md) for detailed examples an
    - `@{examples}` for guidance examples (never output to users)
 5. NEVER display template markup or LLM instructions to users
 6. Focus on clean output - all processing instructions stay internal
-
-## Examples
-
-### Good Dev Agent
-
-```yaml
-name: API Developer
-role: Creates REST APIs
-dependencies:
-  templates:
-    - api-endpoint-tmpl
-  tasks:
-    - implement-endpoint
-```
-
-### Good Planning Agent (Web)
-
-```yaml
-name: PRD Writer
-role: Creates comprehensive PRDs
-dependencies:
-  templates:
-    - prd-tmpl
-    - epic-tmpl
-    - story-tmpl
-  tasks:
-    - elicit-requirements
-    - analyze-market
-    - define-features
-  data:
-    - prd-best-practices
-    - market-analysis-guide
-```
 
 ## Remember
 
