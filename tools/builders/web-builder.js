@@ -1,6 +1,7 @@
 const fs = require("node:fs").promises;
 const path = require("node:path");
 const DependencyResolver = require("../lib/dependency-resolver");
+const yamlUtils = require("../lib/yaml-utils");
 
 class WebBuilder {
   constructor(options = {}) {
@@ -111,10 +112,12 @@ class WebBuilder {
 
   processAgentContent(content) {
     // First, replace content before YAML with the template
+    const yamlContent = yamlUtils.extractYamlFromAgent(content);
+    if (!yamlContent) return content;
+
     const yamlMatch = content.match(/```ya?ml\n([\s\S]*?)\n```/);
     if (!yamlMatch) return content;
-
-    const yamlContent = yamlMatch[1];
+    
     const yamlStartIndex = content.indexOf(yamlMatch[0]);
     const yamlEndIndex = yamlStartIndex + yamlMatch[0].length;
 
@@ -259,7 +262,7 @@ class WebBuilder {
     const agentTeamsDir = path.join(packDir, "agent-teams");
     try {
       const teamFiles = await fs.readdir(agentTeamsDir);
-      const teamFile = teamFiles.find((f) => f.endsWith(".yml"));
+      const teamFile = teamFiles.find((f) => f.endsWith(".yaml"));
 
       if (teamFile) {
         console.log(`    Building team bundle for ${packName}`);
@@ -272,7 +275,7 @@ class WebBuilder {
         for (const outputDir of outputDirs) {
           const teamsOutputDir = path.join(outputDir, "teams");
           await fs.mkdir(teamsOutputDir, { recursive: true });
-          const outputFile = path.join(teamsOutputDir, teamFile.replace(".yml", ".txt"));
+          const outputFile = path.join(teamsOutputDir, teamFile.replace(".yaml", ".txt"));
           await fs.writeFile(outputFile, bundle, "utf8");
           console.log(`    ✓ Created bundle: ${path.relative(this.rootDir, outputFile)}`);
         }
@@ -294,11 +297,11 @@ class WebBuilder {
     sections.push(this.formatSection(`agents#${agentName}`, agentContent));
 
     // Resolve and add agent dependencies
-    const agentYaml = agentContent.match(/```yaml\n([\s\S]*?)\n```/);
-    if (agentYaml) {
+    const yamlContent = yamlUtils.extractYamlFromAgent(agentContent);
+    if (yamlContent) {
       try {
         const yaml = require("js-yaml");
-        const agentConfig = yaml.load(agentYaml[1]);
+        const agentConfig = yaml.load(yamlContent);
 
         if (agentConfig.dependencies) {
           // Add resources, first try expansion pack, then core
@@ -306,7 +309,7 @@ class WebBuilder {
             if (Array.isArray(resources)) {
               for (const resourceName of resources) {
                 let found = false;
-                const extensions = [".md", ".yml", ".yaml"];
+                const extensions = [".md", ".yaml"];
 
                 // Try expansion pack first
                 for (const ext of extensions) {
@@ -391,7 +394,7 @@ class WebBuilder {
 
     // Add team configuration and parse to get agent list
     const teamContent = await fs.readFile(teamConfigPath, "utf8");
-    const teamFileName = path.basename(teamConfigPath, ".yml");
+    const teamFileName = path.basename(teamConfigPath, ".yaml");
     const teamConfig = this.parseYaml(teamContent);
     sections.push(this.formatSection(`agent-teams#${teamFileName}`, teamContent));
 
@@ -416,9 +419,9 @@ class WebBuilder {
       try {
         const resourceFiles = await fs.readdir(resourcePath);
         for (const resourceFile of resourceFiles.filter(
-          (f) => f.endsWith(".md") || f.endsWith(".yml")
+          (f) => f.endsWith(".md") || f.endsWith(".yaml")
         )) {
-          const fileName = resourceFile.replace(/\.(md|yml)$/, "");
+          const fileName = resourceFile.replace(/\.(md|yaml)$/, "");
           expansionResources.set(`${resourceDir}#${fileName}`, true);
         }
       } catch (error) {
@@ -474,13 +477,9 @@ class WebBuilder {
           sections.push(this.formatSection(`agents#${agentId}`, coreAgentContent));
 
           // Parse and collect dependencies from core agent
-          const agentYaml = coreAgentContent.match(/```yaml\n([\s\S]*?)\n```/);
-          if (agentYaml) {
+          const yamlContent = yamlUtils.extractYamlFromAgent(coreAgentContent, true);
+          if (yamlContent) {
             try {
-              // Clean up the YAML to handle command descriptions after dashes
-              let yamlContent = agentYaml[1];
-              yamlContent = yamlContent.replace(/^(\s*-)(\s*"[^"]+")(\s*-\s*.*)$/gm, "$1$2");
-
               const agentConfig = this.parseYaml(yamlContent);
               if (agentConfig.dependencies) {
                 for (const [resourceType, resources] of Object.entries(agentConfig.dependencies)) {
@@ -508,7 +507,7 @@ class WebBuilder {
     // Always prefer expansion pack versions if they exist
     for (const [key, dep] of allDependencies) {
       let found = false;
-      const extensions = [".md", ".yml", ".yaml"];
+      const extensions = [".md", ".yaml"];
 
       // Always check expansion pack first, even if the dependency came from a core agent
       if (expansionResources.has(key)) {
@@ -568,11 +567,11 @@ class WebBuilder {
       try {
         const resourceFiles = await fs.readdir(resourcePath);
         for (const resourceFile of resourceFiles.filter(
-          (f) => f.endsWith(".md") || f.endsWith(".yml")
+          (f) => f.endsWith(".md") || f.endsWith(".yaml")
         )) {
           const filePath = path.join(resourcePath, resourceFile);
           const fileContent = await fs.readFile(filePath, "utf8");
-          const fileName = resourceFile.replace(/\.(md|yml)$/, "");
+          const fileName = resourceFile.replace(/\.(md|yaml)$/, "");
 
           // Only add if not already included as a dependency
           const resourceKey = `${resourceDir}#${fileName}`;

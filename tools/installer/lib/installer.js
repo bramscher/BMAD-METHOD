@@ -2,6 +2,7 @@ const path = require("node:path");
 const fileManager = require("./file-manager");
 const configLoader = require("./config-loader");
 const ideSetup = require("./ide-setup");
+const { extractYamlFromAgent } = require("../../lib/yaml-utils");
 
 // Dynamic imports for ES modules
 let chalk, ora, inquirer;
@@ -19,13 +20,13 @@ class Installer {
   async getCoreVersion() {
     const yaml = require("js-yaml");
     const fs = require("fs-extra");
-    const coreConfigPath = path.join(__dirname, "../../../bmad-core/core-config.yml");
+    const coreConfigPath = path.join(__dirname, "../../../bmad-core/core-config.yaml");
     try {
       const coreConfigContent = await fs.readFile(coreConfigPath, "utf8");
       const coreConfig = yaml.load(coreConfigContent);
       return coreConfig.version || "unknown";
     } catch (error) {
-      console.warn("Could not read version from core-config.yml, using 'unknown'");
+      console.warn("Could not read version from core-config.yaml, using 'unknown'");
       return "unknown";
     }
   }
@@ -185,7 +186,7 @@ class Installer {
 
     // Check for V4 installation (has .bmad-core with manifest)
     const bmadCorePath = path.join(installDir, ".bmad-core");
-    const manifestPath = path.join(bmadCorePath, "install-manifest.yml");
+    const manifestPath = path.join(bmadCorePath, "install-manifest.yaml");
 
     if (await fileManager.pathExists(manifestPath)) {
       state.type = "v4_existing";
@@ -713,7 +714,7 @@ class Installer {
       
       for (const file of filesToRestore) {
         // Skip the manifest file itself
-        if (file.endsWith('install-manifest.yml')) continue;
+        if (file.endsWith('install-manifest.yaml')) continue;
         
         const relativePath = file.replace('.bmad-core/', '');
         const destPath = path.join(installDir, file);
@@ -757,12 +758,7 @@ class Installer {
       const ides = manifest.ides_setup || [];
       if (ides.includes('cursor')) {
         console.log(chalk.yellow.bold("\n⚠️  IMPORTANT: Cursor Custom Modes Update Required"));
-        console.log(chalk.yellow("Since agent files have been repaired, you need to manually update your Cursor custom modes:"));
-        console.log(chalk.yellow("1. Open Cursor Settings (Cmd/Ctrl + ,)"));
-        console.log(chalk.yellow("2. Go to: Features > Cursor Tab > Custom Modes"));
-        console.log(chalk.yellow("3. Update each custom mode with the latest agent templates from:"));
-        console.log(chalk.yellow(`   ${path.join(installDir, '.bmad-core', 'agents')}`));
-        console.log(chalk.yellow("4. Copy the full content of each agent file into the corresponding custom mode"));
+        console.log(chalk.yellow("Since agent files have been repaired, you need to update any custom agent modes configured in the Cursor custom agent GUI per the Cursor docs."));
       }
       
     } catch (error) {
@@ -861,12 +857,7 @@ class Installer {
     // Warning for Cursor custom modes if agents were updated
     if (options.isUpdate && ides.includes('cursor')) {
       console.log(chalk.yellow.bold("\n⚠️  IMPORTANT: Cursor Custom Modes Update Required"));
-      console.log(chalk.yellow("Since agents have been updated, you need to manually update your Cursor custom modes:"));
-      console.log(chalk.yellow("1. Open Cursor Settings (Cmd/Ctrl + ,)"));
-      console.log(chalk.yellow("2. Go to: Features > Cursor Tab > Custom Modes"));
-      console.log(chalk.yellow("3. Update each custom mode with the latest agent templates from:"));
-      console.log(chalk.yellow(`   ${path.join(installDir, '.bmad-core', 'agents')}`));
-      console.log(chalk.yellow("4. Copy the full content of each agent file into the corresponding custom mode"));
+      console.log(chalk.yellow("Since agents have been updated, you need to update any custom agent modes configured in the Cursor custom agent GUI per the Cursor docs."));
     }
   }
 
@@ -1019,7 +1010,7 @@ class Installer {
         
         // Check if expansion pack already exists
         let expansionDotFolder = path.join(installDir, `.${packId}`);
-        const existingManifestPath = path.join(expansionDotFolder, 'install-manifest.yml');
+        const existingManifestPath = path.join(expansionDotFolder, 'install-manifest.yaml');
         
         if (await fileManager.pathExists(existingManifestPath)) {
           spinner.stop();
@@ -1161,12 +1152,12 @@ class Installer {
           }
         }
 
-        // Copy config.yml
-        const configPath = path.join(expansionPackDir, 'config.yml');
+        // Copy config.yaml
+        const configPath = path.join(expansionPackDir, 'config.yaml');
         if (await fileManager.pathExists(configPath)) {
-          const configDestPath = path.join(expansionDotFolder, 'config.yml');
+          const configDestPath = path.join(expansionDotFolder, 'config.yaml');
           if (await fileManager.copyFile(configPath, configDestPath)) {
-            installedFiles.push(path.join(`.${packId}`, 'config.yml'));
+            installedFiles.push(path.join(`.${packId}`, 'config.yaml'));
           }
         }
         
@@ -1232,10 +1223,10 @@ class Installer {
       const agentContent = await fs.readFile(agentPath, 'utf8');
       
       // Extract YAML frontmatter to check dependencies
-      const yamlMatch = agentContent.match(/```yaml\n([\s\S]*?)```/);
-      if (yamlMatch) {
+      const yamlContent = extractYamlFromAgent(agentContent);
+      if (yamlContent) {
         try {
-          const agentConfig = yaml.parse(yamlMatch[1]);
+          const agentConfig = yaml.parse(yamlContent);
           const dependencies = agentConfig.dependencies || {};
           
           // Check for core dependencies (those that don't exist in the expansion pack)
@@ -1278,7 +1269,7 @@ class Installer {
     const fs = require('fs').promises;
     
     // Find all team files in the expansion pack
-    const teamFiles = glob.sync('agent-teams/*.yml', {
+    const teamFiles = glob.sync('agent-teams/*.yaml', {
       cwd: expansionDotFolder
     });
 
@@ -1324,13 +1315,10 @@ class Installer {
               
               // Now resolve this agent's dependencies too
               const agentContent = await fs.readFile(coreAgentPath, 'utf8');
-              const yamlMatch = agentContent.match(/```ya?ml\n([\s\S]*?)```/);
+              const yamlContent = extractYamlFromAgent(agentContent, true);
               
-              if (yamlMatch) {
+              if (yamlContent) {
                 try {
-                  // Clean up the YAML to handle command descriptions
-                  let yamlContent = yamlMatch[1];
-                  yamlContent = yamlContent.replace(/^(\s*-)(\s*"[^"]+")(\s*-\s*.*)$/gm, '$1$2');
                   
                   const agentConfig = yaml.parse(yamlContent);
                   const dependencies = agentConfig.dependencies || {};
@@ -1340,7 +1328,7 @@ class Installer {
                     const deps = dependencies[depType] || [];
                     
                     for (const dep of deps) {
-                      const depFileName = dep.endsWith('.md') || dep.endsWith('.yml') ? dep : `${dep}.md`;
+                      const depFileName = dep.endsWith('.md') || dep.endsWith('.yaml') ? dep : `${dep}.md`;
                       const expansionDepPath = path.join(expansionDotFolder, depType, depFileName);
                       
                       // Check if dependency exists in expansion pack
@@ -1370,7 +1358,7 @@ class Installer {
                 }
               }
             } else {
-              console.warn(chalk.yellow(`  Warning: Core agent ${agentId} not found for team ${path.basename(teamFile, '.yml')}`));
+              console.warn(chalk.yellow(`  Warning: Core agent ${agentId} not found for team ${path.basename(teamFile, '.yaml')}`));
             }
           }
         }
@@ -1538,7 +1526,7 @@ class Installer {
       
       if (stats) {
         // Check if it has a manifest
-        const manifestPath = path.join(folderPath, "install-manifest.yml");
+        const manifestPath = path.join(folderPath, "install-manifest.yaml");
         if (await fileManager.pathExists(manifestPath)) {
           const manifest = await fileManager.readExpansionPackManifest(installDir, folder.substring(1));
           if (manifest) {
@@ -1549,8 +1537,8 @@ class Installer {
             };
           }
         } else {
-          // Check if it has a config.yml (expansion pack without manifest)
-          const configPath = path.join(folderPath, "config.yml");
+          // Check if it has a config.yaml (expansion pack without manifest)
+          const configPath = path.join(folderPath, "config.yaml");
           if (await fileManager.pathExists(configPath)) {
             expansionPacks[folder.substring(1)] = {
               path: folderPath,
@@ -1589,7 +1577,7 @@ class Installer {
       
       for (const file of filesToRestore) {
         // Skip the manifest file itself
-        if (file.endsWith('install-manifest.yml')) continue;
+        if (file.endsWith('install-manifest.yaml')) continue;
         
         const relativePath = file.replace(`.${packId}/`, '');
         const sourcePath = path.join(pack.packPath, relativePath);
@@ -1655,7 +1643,7 @@ class Installer {
 
     while (currentDir !== path.dirname(currentDir)) {
       const bmadDir = path.join(currentDir, ".bmad-core");
-      const manifestPath = path.join(bmadDir, "install-manifest.yml");
+      const manifestPath = path.join(bmadDir, "install-manifest.yaml");
 
       if (await fileManager.pathExists(manifestPath)) {
         return bmadDir;
@@ -1666,7 +1654,7 @@ class Installer {
 
     // Also check if we're inside a .bmad-core directory
     if (path.basename(process.cwd()) === ".bmad-core") {
-      const manifestPath = path.join(process.cwd(), "install-manifest.yml");
+      const manifestPath = path.join(process.cwd(), "install-manifest.yaml");
       if (await fileManager.pathExists(manifestPath)) {
         return process.cwd();
       }

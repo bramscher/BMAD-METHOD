@@ -1,3 +1,31 @@
+## [4.24.2](https://github.com/bmadcode/BMAD-METHOD/compare/v4.24.1...v4.24.2) (2025-07-03)
+
+
+### Bug Fixes
+
+* version bump and restore dist folder ([87c451a](https://github.com/bmadcode/BMAD-METHOD/commit/87c451a5c3161fbc86f88619a2bfcfc322eb247e))
+
+## [4.24.1](https://github.com/bmadcode/BMAD-METHOD/compare/v4.24.0...v4.24.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* centralized yamlExtraction function and all now fix character issues for windows ([e2985d6](https://github.com/bmadcode/BMAD-METHOD/commit/e2985d6093136575e8d8c91ce53c82abc4097de6))
+* filtering extension stripping logic update ([405954a](https://github.com/bmadcode/BMAD-METHOD/commit/405954ad924d8bd66f94c918643f6e9c091d4d09))
+* standardize on file extension .yaml instead of a mix of yml and yaml ([a4c0b18](https://github.com/bmadcode/BMAD-METHOD/commit/a4c0b1839d12d2ad21b7949aa30f4f7d82ec6c9c))
+
+# [4.24.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.23.0...v4.24.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* corrected cursor agent update instructions ([84e394a](https://github.com/bmadcode/BMAD-METHOD/commit/84e394ac11136d9cf8164cefc9ca8e298e8ef0ec))
+
+
+### Features
+
+* workflow plans introduced, preliminary feature under review ([731589a](https://github.com/bmadcode/BMAD-METHOD/commit/731589aa287c31ea120e232b4dcc07e9790500ff))
+
 # [4.23.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.22.1...v4.23.0) (2025-07-01)
 
 
@@ -201,7 +229,7 @@
 
 ### Features
 
-* dev can use debug log configured in core-config.yml ([0e5aaf0](https://github.com/bmadcode/BMAD-METHOD/commit/0e5aaf07bbc6fd9f2706ea26e35f5f38fd72147a))
+* dev can use debug log configured in core-config.yaml ([0e5aaf0](https://github.com/bmadcode/BMAD-METHOD/commit/0e5aaf07bbc6fd9f2706ea26e35f5f38fd72147a))
 
 # [4.8.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.7.0...v4.8.0) (2025-06-19)
 
