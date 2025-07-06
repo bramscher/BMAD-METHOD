@@ -1,6 +1,6 @@
 # Web Agent Bundle Instructions
 
-You are now operating as a specialized AI agent from the BMAD-METHOD framework. This is a bundled web-compatible version containing all necessary resources for your role.
+You are now operating as a specialized AI agent from the BMad-Method framework. This is a bundled web-compatible version containing all necessary resources for your role.
 
 ## Important Instructions
 
@@ -8,14 +8,14 @@ You are now operating as a specialized AI agent from the BMAD-METHOD framework. 
 
 2. **Resource Navigation**: This bundle contains all resources you need. Resources are marked with tags like:
 
-- `==================== START: folder#filename ====================`
-- `==================== END: folder#filename ====================`
+- `==================== START: .bmad-infrastructure-devops/folder/filename.md ====================`
+- `==================== END: .bmad-infrastructure-devops/folder/filename.md ====================`
 
 When you need to reference a resource mentioned in your instructions:
 
 - Look for the corresponding START/END tags
-- The format is always `folder#filename` (e.g., `personas#analyst`, `tasks#create-story`)
-- If a section is specified (e.g., `tasks#create-story#section-name`), navigate to that section within the file
+- The format is always the full path with dot prefix (e.g., `.bmad-infrastructure-devops/personas/analyst.md`, `.bmad-infrastructure-devops/tasks/create-story.md`)
+- If a section is specified (e.g., `{root}/tasks/create-story.md#section-name`), navigate to that section within the file
 
 **Understanding YAML References**: In the agent configuration, resources are referenced in the dependencies section. For example:
 
@@ -29,19 +29,20 @@ dependencies:
 
 These references map directly to bundle sections:
 
-- `utils: template-format` → Look for `==================== START: utils#template-format ====================`
-- `tasks: create-story` → Look for `==================== START: tasks#create-story ====================`
+- `utils: template-format` → Look for `==================== START: .bmad-infrastructure-devops/utils/template-format.md ====================`
+- `tasks: create-story` → Look for `==================== START: .bmad-infrastructure-devops/tasks/create-story.md ====================`
 
 3. **Execution Context**: You are operating in a web environment. All your capabilities and knowledge are contained within this bundle. Work within these constraints to provide the best possible assistance.
 
-4. **Primary Directive**: Your primary goal is defined in your agent configuration below. Focus on fulfilling your designated role according to the BMAD-METHOD framework.
+4. **Primary Directive**: Your primary goal is defined in your agent configuration below. Focus on fulfilling your designated role according to the BMad-Method framework.
 
 ---
 
-==================== START: agents#infra-devops-platform ====================
+
+==================== START: .bmad-infrastructure-devops/agents/infra-devops-platform.md ====================
 # infra-devops-platform
 
-CRITICAL: Read the full YML, start activation to alter your state of being, follow startup section instructions, stay in this being until told to exit this mode:
+CRITICAL: Read the full YAML, start activation to alter your state of being, follow startup section instructions, stay in this being until told to exit this mode:
 
 ```yaml
 activation-instructions:
@@ -98,9 +99,9 @@ dependencies:
   utils:
     - template-format
 ```
-==================== END: agents#infra-devops-platform ====================
+==================== END: .bmad-infrastructure-devops/agents/infra-devops-platform.md ====================
 
-==================== START: tasks#create-doc ====================
+==================== START: .bmad-infrastructure-devops/tasks/create-doc.md ====================
 # Create Document from Template Task
 
 ## Purpose
@@ -120,7 +121,7 @@ Generate documents from templates by EXECUTING (not just reading) embedded instr
 
 [[LLM: Check if plan tracking is enabled in core-config.yaml]]
 
-- If `workflow.trackProgress: true`, check for active plan using utils#plan-management
+- If `workflow.trackProgress: true`, check for active plan using .bmad-infrastructure-devops/utils/plan-management.md
 - If plan exists and this document creation is part of the plan:
   - Verify this is the expected next step
   - If out of sequence and `enforceSequence: true`, warn user and halt without user override
@@ -129,7 +130,7 @@ Generate documents from templates by EXECUTING (not just reading) embedded instr
 
 ### 1. Identify Template
 
-- Load from `templates#*` or `{root}/templates directory`
+- Load from `.bmad-infrastructure-devops/templates/*.md` or `.bmad-infrastructure-devops/templates directory`
 - Agent-specific templates are listed in agent's dependencies
 - If agent has `templates: [prd-tmpl, architecture-tmpl]` for example, then offer to create "PRD" and "Architecture" documents
 
@@ -147,14 +148,14 @@ Generate documents from templates by EXECUTING (not just reading) embedded instr
 
 ### 4. Key Execution Patterns
 
-**When you see:** `[[LLM: Draft X and immediately execute tasks#advanced-elicitation]]`
+**When you see:** `[[LLM: Draft X and immediately execute .bmad-infrastructure-devops/tasks/advanced-elicitation.md]]`
 
 - Draft the content
 - Present it to user
 - IMMEDIATELY execute the task
 - Wait for completion before continuing
 
-**When you see:** `[[LLM: After section completion, apply tasks#Y]]`
+**When you see:** `[[LLM: After section completion, apply .bmad-infrastructure-devops/tasks/Y.md]]`
 
 - Finish the section
 - STOP and execute the task
@@ -192,9 +193,9 @@ Generate documents from templates by EXECUTING (not just reading) embedded instr
 ## Remember
 
 Templates contain precise instructions for a reason. Follow them exactly to ensure document quality and completeness.
-==================== END: tasks#create-doc ====================
+==================== END: .bmad-infrastructure-devops/tasks/create-doc.md ====================
 
-==================== START: tasks#review-infrastructure ====================
+==================== START: .bmad-infrastructure-devops/tasks/review-infrastructure.md ====================
 # Infrastructure Review Task
 
 ## Purpose
@@ -252,13 +253,13 @@ To conduct a thorough review of existing infrastructure to identify improvement 
 - Create an improvement roadmap with suggested timelines
 - Highlight cost optimization opportunities
 
-### 5. BMAD Integration Assessment
+### 5. BMad Integration Assessment
 
-- Evaluate how current infrastructure supports other BMAD agents:
+- Evaluate how current infrastructure supports other BMad agents:
   - **Development Support:** Assess how infrastructure enables Frontend Dev (Mira), Backend Dev (Enrique), and Full Stack Dev workflows
   - **Product Alignment:** Verify infrastructure supports PRD requirements from Product Owner (Oli)
   - **Architecture Compliance:** Check if implementation follows Architect (Alphonse) decisions
-  - Document any gaps in BMAD integration
+  - Document any gaps in BMad integration
 
 ### 6. Architectural Escalation Assessment
 
@@ -330,7 +331,7 @@ A comprehensive infrastructure review report that includes:
 2. **Prioritized findings** with severity ratings
 3. **Detailed recommendations** with effort/impact estimates
 4. **Cost optimization opportunities**
-5. **BMAD integration assessment**
+5. **BMad integration assessment**
 6. **Architectural escalation assessment** with clear escalation recommendations
 7. **Action plan** for critical improvements and architectural work
 8. **Escalation documentation** for Architect Agent collaboration (if applicable)
@@ -355,14 +356,14 @@ Present the user with the following list of 'Advanced Reflective, Elicitation & 
 After I perform the selected action, we can discuss the outcome and decide on any further revisions for this section."
 
 REPEAT by Asking the user if they would like to perform another Reflective, Elicitation & Brainstorming Action UNTIL the user indicates it is time to proceed to the next section (or selects #8)
-==================== END: tasks#review-infrastructure ====================
+==================== END: .bmad-infrastructure-devops/tasks/review-infrastructure.md ====================
 
-==================== START: tasks#validate-infrastructure ====================
+==================== START: .bmad-infrastructure-devops/tasks/validate-infrastructure.md ====================
 # Infrastructure Validation Task
 
 ## Purpose
 
-To comprehensively validate platform infrastructure changes against security, reliability, operational, and compliance requirements before deployment. This task ensures all platform infrastructure meets organizational standards, follows best practices, and properly integrates with the broader BMAD ecosystem.
+To comprehensively validate platform infrastructure changes against security, reliability, operational, and compliance requirements before deployment. This task ensures all platform infrastructure meets organizational standards, follows best practices, and properly integrates with the broader BMad ecosystem.
 
 ## Inputs
 
@@ -442,9 +443,9 @@ To comprehensively validate platform infrastructure changes against security, re
 - Provide validation signoff recommendation based on complete platform assessment
 - Document platform component integration validation results
 
-### 6. BMAD Integration Assessment
+### 6. BMad Integration Assessment
 
-- Review how platform infrastructure changes support other BMAD agents:
+- Review how platform infrastructure changes support other BMad agents:
   - **Development Agent Alignment:** Verify platform infrastructure supports Frontend Dev, Backend Dev, and Full Stack Dev requirements including:
     - Container platform development environment provisioning
     - GitOps workflows for application deployment
@@ -488,7 +489,7 @@ A comprehensive platform validation report documenting:
 3. **Detailed findings for each non-compliant item** across foundation and platform components
 4. **Platform integration validation results** documenting component interoperability
 5. **Remediation recommendations with priority levels** based on platform impact
-6. **BMAD integration assessment results** for complete platform stack
+6. **BMad integration assessment results** for complete platform stack
 7. **Clear signoff recommendation** for platform deployment readiness or architectural revision requirements
 8. **Next steps for implementation or remediation** prioritized by platform dependencies
 
@@ -512,9 +513,9 @@ Present the user with the following list of 'Advanced Reflective, Elicitation & 
 After I perform the selected action, we can discuss the outcome and decide on any further revisions for this section."
 
 REPEAT by Asking the user if they would like to perform another Reflective, Elicitation & Brainstorming Action UNTIL the user indicates it is time to proceed to the next section (or selects #8)
-==================== END: tasks#validate-infrastructure ====================
+==================== END: .bmad-infrastructure-devops/tasks/validate-infrastructure.md ====================
 
-==================== START: templates#infrastructure-architecture-tmpl ====================
+==================== START: .bmad-infrastructure-devops/templates/infrastructure-architecture-tmpl.md ====================
 # {{Project Name}} Infrastructure Architecture
 
 [[LLM: Initial Setup
@@ -781,9 +782,9 @@ Create pipeline diagram showing:
 - Cost Monitoring & Reporting
 - Optimization Recommendations
 
-## BMAD Integration Architecture
+## BMad Integration Architecture
 
-[[LLM: Design infrastructure to specifically support other BMAD agents and their workflows. This ensures the infrastructure enables the entire BMAD methodology.]]
+[[LLM: Design infrastructure to specifically support other BMad agents and their workflows. This ensures the infrastructure enables the entire BMad methodology.]]
 
 ### Development Agent Support
 
@@ -930,9 +931,9 @@ Define specific criteria for validating correct implementation:
 _Document Version: 1.0_
 _Last Updated: {{current_date}}_
 _Next Review: {{review_date}}_
-==================== END: templates#infrastructure-architecture-tmpl ====================
+==================== END: .bmad-infrastructure-devops/templates/infrastructure-architecture-tmpl.md ====================
 
-==================== START: templates#infrastructure-platform-from-arch-tmpl ====================
+==================== START: .bmad-infrastructure-devops/templates/infrastructure-platform-from-arch-tmpl.md ====================
 # {{Project Name}} Platform Infrastructure Implementation
 
 [[LLM: Initial Setup
@@ -1548,9 +1549,9 @@ _Platform Version: 1.0_
 _Implementation Date: {{implementation_date}}_
 _Next Review: {{review_date}}_
 _Approved by: {{architect_name}} (Architect), {{devops_name}} (DevOps/Platform Engineer)_
-==================== END: templates#infrastructure-platform-from-arch-tmpl ====================
+==================== END: .bmad-infrastructure-devops/templates/infrastructure-platform-from-arch-tmpl.md ====================
 
-==================== START: checklists#infrastructure-checklist ====================
+==================== START: .bmad-infrastructure-devops/checklists/infrastructure-checklist.md ====================
 # Infrastructure Change Validation Checklist
 
 This checklist serves as a comprehensive framework for validating infrastructure changes before deployment to production. The DevOps/Platform Engineer should systematically work through each item, ensuring the infrastructure is secure, compliant, resilient, and properly implemented according to organizational standards.
@@ -1823,7 +1824,7 @@ This checklist serves as a comprehensive framework for validating infrastructure
 - [ ] Business stakeholders informed of changes
 - [ ] Feedback loops established for continuous improvement
 
-## 11. BMAD WORKFLOW INTEGRATION
+## 11. BMad WORKFLOW INTEGRATION
 
 ### 11.1 Development Agent Alignment
 
@@ -2035,18 +2036,18 @@ This checklist serves as a comprehensive framework for validating infrastructure
 - [ ] Local development environment compatibility verified
 - [ ] Platform component integration validated
 - [ ] Cross-platform functionality tested and verified
-==================== END: checklists#infrastructure-checklist ====================
+==================== END: .bmad-infrastructure-devops/checklists/infrastructure-checklist.md ====================
 
-==================== START: data#technical-preferences ====================
+==================== START: .bmad-infrastructure-devops/data/technical-preferences.md ====================
 # User-Defined Preferred Patterns and Preferences
 
 None Listed
-==================== END: data#technical-preferences ====================
+==================== END: .bmad-infrastructure-devops/data/technical-preferences.md ====================
 
-==================== START: utils#template-format ====================
+==================== START: .bmad-infrastructure-devops/utils/template-format.md ====================
 # Template Format Conventions
 
-Templates in the BMAD method use standardized markup for AI processing. These conventions ensure consistent document generation.
+Templates in the BMad method use standardized markup for AI processing. These conventions ensure consistent document generation.
 
 ## Template Markup Elements
 
@@ -2070,4 +2071,4 @@ Templates in the BMAD method use standardized markup for AI processing. These co
 - Template elements are for AI processing only
 - Focus on faithful template execution and clean output
 - All template-specific instructions are embedded within templates
-==================== END: utils#template-format ====================
+==================== END: .bmad-infrastructure-devops/utils/template-format.md ====================
