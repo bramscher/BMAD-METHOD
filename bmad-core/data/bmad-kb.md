@@ -162,8 +162,8 @@ npx bmad-method install
 
 **CRITICAL RULE for Development**:
 
-- **ALWAYS use SM agent for story creation** - Never use bmad-master/orchestrator
-- **ALWAYS use Dev agent for implementation** - Never use bmad-master/orchestrator
+- **ALWAYS use SM agent for story creation** - Never use bmad-master or bmad-orchestrator
+- **ALWAYS use Dev agent for implementation** - Never use bmad-master or bmad-orchestrator
 - **Why this matters**: SM and Dev agents are specifically optimized for the development workflow
 - **No exceptions**: Even if using bmad-master for everything else, switch to SM → Dev for implementation
 
@@ -300,7 +300,7 @@ You are the "Vibe CEO" - thinking like a CEO with unlimited resources and a sing
 - **Cursor**: `@agent-name` (e.g., `@bmad-master`)
 - **Windsurf**: `@agent-name` (e.g., `@bmad-master`)
 - **Trae**: `@agent-name` (e.g., `@bmad-master`)
-- **Roo Code**: Select mode from mode selector (e.g., `bmad-bmad-master`)
+- **Roo Code**: Select mode from mode selector (e.g., `bmad-master`)
 - **GitHub Copilot**: Open the Chat view (`⌃⌘I` on Mac, `Ctrl+Alt+I` on Windows/Linux) and select **Agent** from the chat mode selector.
 
 **Chat Management Guidelines**:
@@ -403,16 +403,9 @@ The BMad-Method is built around a modular architecture centered on the `bmad-cor
 
 BMad employs a sophisticated template system with three key components:
 
-1. **Template Format** (`utils/template-format.md`): Defines markup language for variable substitution and AI processing directives
-2. **Document Creation** (`tasks/create-doc.md`): Orchestrates template selection and user interaction
+1. **Template Format** (`utils/bmad-doc-template.md`): Defines markup language for variable substitution and AI processing directives from yaml templates
+2. **Document Creation** (`tasks/create-doc.md`): Orchestrates template selection and user interaction to transform yaml spec to final markdown output
 3. **Advanced Elicitation** (`tasks/advanced-elicitation.md`): Provides interactive refinement through structured brainstorming
-
-**Template Features**:
-
-- **Self-contained**: Templates embed both output structure and processing instructions
-- **Variable Substitution**: `{{placeholders}}` for dynamic content
-- **AI Processing Directives**: `[[LLM: instructions]]` for AI-only processing
-- **Interactive Refinement**: Built-in elicitation processes for quality improvement
 
 ### Technical Preferences Integration
 
@@ -733,7 +726,7 @@ For full details, see `CONTRIBUTING.md`. Key points:
 - Atomic commits - one logical change per commit
 - Must align with guiding principles
 
-**Core Principles** (from GUIDING-PRINCIPLES.md):
+**Core Principles** (from docs/GUIDING-PRINCIPLES.md):
 
 - **Dev Agents Must Be Lean**: Minimize dependencies, save context for code
 - **Natural Language First**: Everything in markdown, no code in core
@@ -803,8 +796,8 @@ Use the **expansion-creator** pack to build your own:
 
 ## Getting Help
 
-- **Commands**: Use `/help` in any environment to see available commands
-- **Agent Switching**: Use `/switch agent-name` with orchestrator for role changes
+- **Commands**: Use `*/*help` in any environment to see available commands
+- **Agent Switching**: Use `*/*switch agent-name` with orchestrator for role changes
 - **Documentation**: Check `docs/` folder for project-specific context
 - **Community**: Discord and GitHub resources available for support
 - **Contributing**: See `CONTRIBUTING.md` for full guidelines

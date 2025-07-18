@@ -37,7 +37,7 @@ Use Google's Gemini for collaborative planning with the full team:
 2. **Create a new Gem**:
    - Give it a title and description (e.g., "BMad Team Fullstack")
 3. **Load team-fullstack**:
-   - Copy contents of: `dist/teams/team-fullstack.txt` from your project
+   - Copy contents of: `web-bundles/teams/team-fullstack.txt` from your project
    - Paste this content into the Gem setup to configure the team
 4. **Collaborate with the team**:
    - Business Analyst: Requirements gathering
@@ -111,9 +111,10 @@ Follow the SM → Dev cycle for systematic story development:
 
 - **Claude Code**: `/agent-name` (e.g., `/bmad-master`)
 - **Cursor**: `@agent-name` (e.g., `@bmad-master`)
+- **Gemini CLI**: `*agent-name` (e.g., `*bmad-master`)
 - **Windsurf**: `@agent-name` (e.g., `@bmad-master`)
 - **Trae**: `@agent-name` (e.g., `@bmad-master`)
-- **Roo Code**: Select mode from mode selector (e.g., `bmad-bmad-master`)
+- **Roo Code**: Select mode from mode selector (e.g., `bmad-master`)
 - **GitHub Copilot**: Open the Chat view (`⌃⌘I` on Mac, `Ctrl+Alt+I` on Windows/Linux) and select **Agent** from the chat mode selector.
 
 ### Chat Management:
