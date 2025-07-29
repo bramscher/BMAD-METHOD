@@ -1,15 +1,26 @@
-# [4.32.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.31.0...v4.32.0) (2025-07-27)
+## [4.33.1](https://github.com/bmadcode/BMAD-METHOD/compare/v4.33.0...v4.33.1) (2025-07-29)
 
 
 ### Bug Fixes
 
-* Add package-lock.json to fix GitHub Actions dependency resolution ([cce7a75](https://github.com/bmadcode/BMAD-METHOD/commit/cce7a758a632053e26d143b678eb7963599b432d))
-* GHA fix ([62ccccd](https://github.com/bmadcode/BMAD-METHOD/commit/62ccccdc9e85f8621f63f99bd1ce0d14abe09783))
+* dev agent yaml syntax for develop-story command ([#362](https://github.com/bmadcode/BMAD-METHOD/issues/362)) ([bcb3728](https://github.com/bmadcode/BMAD-METHOD/commit/bcb3728f8868c0f83bca3d61fbd7e15c4e114526))
 
+# [4.33.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.32.0...v4.33.0) (2025-07-28)
 
 ### Features
 
-* Overhaul and Enhance 2D Unity Game Dev Expansion Pack ([#350](https://github.com/bmadcode/BMAD-METHOD/issues/350)) ([a7038d4](https://github.com/bmadcode/BMAD-METHOD/commit/a7038d43d18246f6aef175aa89ba059b7c94f61f))
+- version bump ([e9dd4e7](https://github.com/bmadcode/BMAD-METHOD/commit/e9dd4e7beb46d0c80df0cd65ae02d1867a56d7c1))
+
+# [4.32.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.31.0...v4.32.0) (2025-07-27)
+
+### Bug Fixes
+
+- Add package-lock.json to fix GitHub Actions dependency resolution ([cce7a75](https://github.com/bmadcode/BMAD-METHOD/commit/cce7a758a632053e26d143b678eb7963599b432d))
+- GHA fix ([62ccccd](https://github.com/bmadcode/BMAD-METHOD/commit/62ccccdc9e85f8621f63f99bd1ce0d14abe09783))
+
+### Features
+
+- Overhaul and Enhance 2D Unity Game Dev Expansion Pack ([#350](https://github.com/bmadcode/BMAD-METHOD/issues/350)) ([a7038d4](https://github.com/bmadcode/BMAD-METHOD/commit/a7038d43d18246f6aef175aa89ba059b7c94f61f))
 
 # [4.31.0](https://github.com/bmadcode/BMAD-METHOD/compare/v4.30.4...v4.31.0) (2025-07-20)
 
